@@ -1,7 +1,48 @@
+"use client";
 import React from "react";
+import Input from "@/components/Input";
+import { Input as Inputt } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
-const page = () => {
-  return <div>page</div>;
+const Form = () => {
+  const submit = () => {
+    console.log("submit");
+  };
+  return (
+    <section className=" flex flex-col mt-7 justify-center items-center">
+      <div className=" flex w-full justify-between">
+        <h1 className="text-3xl text-transparent from-gray-500 to-gray-800 bg-clip-text bg-gradient-to-b font-bold mx-10 xl:flex hidden">
+          Create New Note
+        </h1>
+        <div className=" mx-12">
+          <Inputt
+            placeholder="Title"
+            className="w-64 px-2 py-1 border-2 border-gray-800 rounded"
+          />
+        </div>
+        <div className=" mx-14 space-x-2">
+          <Button variant="" asChild>
+            <Link
+              href="/"
+              className=" text-lg text-gray-100 font-bold bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-500 transition duration-300 ease-in-out"
+            >
+              Back
+            </Link>
+          </Button>
+          <Button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            onClick={submit}
+          >
+            Submit
+          </Button>
+        </div>
+      </div>
+      <div>
+        <Input />
+      </div>
+    </section>
+  );
 };
 
-export default page;
+export default Form;

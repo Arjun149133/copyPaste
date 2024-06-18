@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Dashboard from "@/components/Dashboard";
+import Provider from "@components/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,10 +14,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className=" flex justify-center my-2 mx-2">
-          <Dashboard />
-        </div>
-        {children}
+        <Provider>
+          <div className=" flex my-2 mx-2">
+            <Dashboard />
+          </div>
+          {children}
+        </Provider>
       </body>
     </html>
   );
