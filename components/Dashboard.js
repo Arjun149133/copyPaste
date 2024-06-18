@@ -13,6 +13,7 @@ const Dashboard = () => {
   const pathname = usePathname();
 
   useEffect(() => {
+    //for create button
     if (pathname === "/") {
       setShowButton(true);
     } else {
