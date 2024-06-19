@@ -2,12 +2,13 @@ import Note from "@/lib/database/models/note";
 import { connectToDatabase } from "@/lib/database/mongoose";
 
 export const POST = async (req, res) => {
-  const { title, content } = await req.json();
+  const { title, content, userId } = await req.json();
   try {
     await connectToDatabase();
     const newNote = new Note({
       title,
       content,
+      creator: userId,
     });
 
     await newNote.save();

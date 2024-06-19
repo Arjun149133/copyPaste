@@ -4,8 +4,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 
-const Input = () => {
-  const [code, setCode] = useState("--write your code here--");
+const Input = ({ code, setCode }) => {
   const onChange = useCallback((val, ViewUpdate) => {
     console.log("val: ", val);
     setCode(val);

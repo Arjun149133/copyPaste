@@ -5,7 +5,7 @@ export const GET = async (req, { params }) => {
   try {
     await connectToDatabase();
 
-    const note = await Note.findById(params.id);
+    const note = await Note.findById(params.id).populate("creator");
 
     if (!note) {
       return new Response(
