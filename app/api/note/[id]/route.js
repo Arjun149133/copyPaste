@@ -62,7 +62,7 @@ export const PATCH = async (req, { params }) => {
     }
 
     return new Response(JSON.stringify(note), {
-      status: 200,
+      status: 201,
     });
   } catch (error) {
     return new Response(

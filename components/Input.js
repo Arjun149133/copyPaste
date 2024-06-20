@@ -4,7 +4,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import { javascript } from "@codemirror/lang-javascript";
 import { okaidia } from "@uiw/codemirror-theme-okaidia";
 
-const Input = ({ code, setCode }) => {
+const Input = ({ code, setCode, read = false }) => {
   const onChange = useCallback((val, ViewUpdate) => {
     console.log("val: ", val);
     setCode(val);
@@ -20,6 +20,7 @@ const Input = ({ code, setCode }) => {
             height="476px"
             theme={okaidia}
             extensions={[javascript({ jsx: true })]}
+            readOnly={read}
           />
         </div>
       </div>

@@ -1,4 +1,3 @@
-import Dashboard from "@/components/Dashboard";
 import Notes from "@/components/Notes";
 import React from "react";
 
