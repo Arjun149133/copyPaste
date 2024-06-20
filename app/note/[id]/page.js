@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Input as Title } from "@components/ui/input";
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   const { data: session } = useSession();
   const [note, setNote] = useState({});
   const [title, setTitle] = useState("");
@@ -108,4 +108,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Page;
