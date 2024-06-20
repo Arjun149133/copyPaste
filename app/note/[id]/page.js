@@ -24,7 +24,7 @@ const Page = ({ params }) => {
       setNote(data);
     };
     fetchNote();
-  }, []);
+  }, [params.id]);
 
   const updateNote = async (e) => {
     e.preventDefault();

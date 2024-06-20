@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import List from "./List";
 import Link from "next/link";
 import React from "react";
+import { Suspense } from "react";
+import Loading from "@app/loading";
 
 const Notes = () => {
   return (
@@ -10,7 +12,9 @@ const Notes = () => {
         <h1 className="text-3xl text-transparent from-blue-500 to-blue-800 bg-clip-text bg-gradient-to-b font-bold">
           Notes:
         </h1>
-        <List />
+        <Suspense fallback={<Loading />}>
+          <List />
+        </Suspense>
       </div>
     </section>
   );

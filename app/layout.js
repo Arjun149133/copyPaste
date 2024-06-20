@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Dashboard from "@/components/Dashboard";
 import Provider from "@components/Provider";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,10 +17,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <div className=" flex my-2 mx-2">
-            <Dashboard />
-          </div>
-          {children}
+          <Suspense>
+            <div className=" flex my-2 mx-2">
+              <Dashboard />
+            </div>
+            {children}
+          </Suspense>
         </Provider>
       </body>
     </html>
