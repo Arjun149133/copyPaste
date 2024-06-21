@@ -1,24 +1,18 @@
-"use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-const List = () => {
-  const [notes, setNotes] = useState([]);
+const List = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/note`, {
+    cache: "no-store",
+  });
+  const notes = await res.json();
 
-  useEffect(() => {
-    const fetchNotes = async () => {
-      const response = await fetch("/api/note");
-      const data = await response.json();
-      setNotes(data);
-    };
-    fetchNotes();
-  }, []);
   return (
     <div className=" text-black">
-      {notes.map((note) => (
+      {notes?.map((note) => (
         <div
-          key={note.id}
+          key={note._id}
           className=" border-gray-200 border-2 m-1 rounded-lg my-5 h-10 p-1 cursor-pointer bg-gray-100"
         >
           <div className=" flex justify-between">

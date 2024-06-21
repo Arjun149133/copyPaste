@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import List from "./List";
-import Link from "next/link";
 import React from "react";
 import { Suspense } from "react";
 import Loading from "@app/loading";

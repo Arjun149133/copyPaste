@@ -1,6 +1,5 @@
-"use client";
 import Notes from "@/components/Notes";
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import Loading from "./loading";
 
 const Home = () => {

@@ -13,15 +13,18 @@ const Page = ({ params }) => {
   const [title, setTitle] = useState("");
   const [code, setCode] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [Loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     const fetchNote = async () => {
+      setLoading(true);
       const response = await fetch(`/api/note/${params.id}`);
       const data = await response.json();
       setTitle(data.title);
       setCode(data.content);
       setNote(data);
+      setLoading(false);
     };
     fetchNote();
   }, [params.id]);
@@ -62,6 +65,8 @@ const Page = ({ params }) => {
       console.log(error);
     }
   };
+
+  if (Loading) return <div>Loading...</div>;
 
   return (
     <div>
