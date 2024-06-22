@@ -2,7 +2,7 @@ import Notes from "@/components/Notes";
 import React, { Suspense } from "react";
 import Loading from "./loading";
 
-const Home = () => {
+const Home = async () => {
   return (
     <section className="">
       <Suspense fallback={<Loading />}>

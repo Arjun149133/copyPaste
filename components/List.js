@@ -1,13 +1,21 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 
-const List = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/note`, {
-    cache: "no-store",
-  });
-  const notes = await res.json();
+const List = () => {
+  const [notes, setNotes] = useState([]);
 
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const res = await fetch("/api/note", {
+        cache: "no-store",
+      });
+      const data = await res.json();
+      setNotes(data);
+    };
+    fetchNotes();
+  }, []);
   return (
     <div className=" text-black">
       {notes?.map((note) => (
