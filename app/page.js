@@ -1,9 +1,9 @@
 "use client";
-import Notes from "@/components/Notes";
 import React, { Suspense, useEffect, useState } from "react";
 import Loading from "./loading";
 import { Button } from "@components/ui/button";
 import Link from "next/link";
+import { Spinner } from "@chakra-ui/react";
 
 const Home = async () => {
   const [notes, setNotes] = useState([]);
@@ -21,13 +21,14 @@ const Home = async () => {
     };
     fetchNotes();
   }, []);
+
   return (
     <section className=" flex flex-col mt-7 mx-10 space-y-5">
-      <div>
-        <h1 className="text-3xl text-transparent from-blue-500 to-blue-800 bg-clip-text bg-gradient-to-b font-bold">
-          Notes:
-        </h1>
-        <Suspense fallback={<Loading />}>
+      <Suspense fallback={<Loading />}>
+        <div>
+          <h1 className="text-3xl text-transparent from-blue-500 to-blue-800 bg-clip-text bg-gradient-to-b font-bold">
+            Notes:
+          </h1>
           <div className=" text-black">
             {notes?.map((note) => (
               <div
@@ -47,8 +48,8 @@ const Home = async () => {
               </div>
             ))}
           </div>
-        </Suspense>
-      </div>
+        </div>
+      </Suspense>
     </section>
   );
 };

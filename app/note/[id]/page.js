@@ -4,7 +4,7 @@ import { Button } from "@components/ui/button";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Input as Title } from "@components/ui/input";
 
 const Page = ({ params }) => {
@@ -66,50 +66,52 @@ const Page = ({ params }) => {
     }
   };
 
-  if (Loading) return <div>Loading...</div>;
-
   return (
-    <div>
-      <div className=" flex justify-between">
-        <div className=" mx-12">
-          {session?.user?.id === note.creator?._id ? (
-            <Title
-              placeholder="Title"
-              className="w-64 px-2 py-1 border-2 border-gray-800 rounded"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          ) : (
-            <div>
-              <h1 className=" text-3xl font-bold">{note.title}</h1>
-            </div>
-          )}
+    <Suspense fallback={<Loading />}>
+      <div>
+        <div className=" flex justify-between">
+          <div className=" mx-12">
+            {session?.user?.id === note.creator?._id ? (
+              <Title
+                placeholder="Title"
+                className="w-64 px-2 py-1 border-2 border-gray-800 rounded"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            ) : (
+              <div>
+                <h1 className=" text-3xl font-bold">{note.title}</h1>
+              </div>
+            )}
+          </div>
+          <div className=" mx-10 space-x-5 flex">
+            <Button variant="" asChild>
+              <Link
+                href="/"
+                className=" text-lg text-gray-100 font-bold bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-500 transition duration-300 ease-in-out"
+              >
+                Back
+              </Link>
+            </Button>
+            {session?.user?.id === note.creator?._id && (
+              <>
+                <Button onClick={updateNote} disable={submitting}>
+                  Update
+                </Button>
+                <Button onClick={deleteNote} variant="destructive">
+                  Delete
+                </Button>
+              </>
+            )}
+          </div>
         </div>
-        <div className=" mx-10 space-x-5 flex">
-          <Button variant="" asChild>
-            <Link
-              href="/"
-              className=" text-lg text-gray-100 font-bold bg-gradient-to-r from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-500 transition duration-300 ease-in-out"
-            >
-              Back
-            </Link>
-          </Button>
-          {session?.user?.id === note.creator?._id && (
-            <>
-              <Button onClick={updateNote}>Update</Button>
-              <Button onClick={deleteNote} variant="destructive">
-                Delete
-              </Button>
-            </>
-          )}
-        </div>
+        <Input
+          code={code}
+          setCode={setCode}
+          read={session?.user?.id !== note.creator?._id}
+        />
       </div>
-      <Input
-        code={code}
-        setCode={setCode}
-        read={session?.user?.id !== note.creator?._id}
-      />
-    </div>
+    </Suspense>
   );
 };
 

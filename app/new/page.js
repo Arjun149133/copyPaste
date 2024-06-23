@@ -13,6 +13,7 @@ const Form = () => {
   const [title, setTitle] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [code, setCode] = useState("--write your code here--");
+
   const submit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -65,6 +66,7 @@ const Form = () => {
           <Button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             onClick={submit}
+            disabled={submitting}
           >
             Submit
           </Button>
