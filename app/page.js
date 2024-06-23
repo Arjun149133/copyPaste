@@ -1,28 +1,28 @@
-"use client";
-import Notes from "@/components/Notes";
-import React, { Suspense, useEffect, useState } from "react";
+"use server";
+import React, { Suspense } from "react";
 import Loading from "./loading";
 import { Button } from "@components/ui/button";
 import Link from "next/link";
 
-const Home = () => {
-  const [notes, setNotes] = useState([]);
-  const [Loading, setLoading] = useState(true);
+const getNotes = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/note", {
+      cache: "no-store",
+    });
 
-  useEffect(() => {
-    const fetchNotes = async () => {
-      setLoading(true);
-      const res = await fetch("/api/note", {
-        next: {
-          revalidate: 1,
-        },
-      });
-      const data = await res.json();
-      setNotes(data);
-      setLoading(false);
-    };
-    fetchNotes();
-  }, []);
+    if (!res.ok) {
+      throw new Error("Failed to fetch notes");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log("Error fetching notes", error);
+  }
+};
+
+const Home = async () => {
+  const notes = await getNotes();
+
   return (
     <section className=" flex flex-col mt-7 mx-10 space-y-5">
       <div>
