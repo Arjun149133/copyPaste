@@ -1,6 +1,8 @@
 import { connectToDatabase } from "@/lib/database/mongoose";
 import Note from "@/lib/database/models/note";
 
+export const revalidate = 0;
+
 export const GET = async (req, res) => {
   try {
     await connectToDatabase();
