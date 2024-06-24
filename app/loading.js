@@ -2,7 +2,7 @@ import { Spinner } from "@chakra-ui/react";
 
 export default function Loading() {
   return (
-    <div className=" flex w-full h-96 justify-center items-center">
+    <div className=" flex w-full h-96 max-sm:h-screen justify-center items-center">
       <div role="status">
         <svg
           aria-hidden="true"

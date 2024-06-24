@@ -4,6 +4,8 @@ import Dashboard from "@/components/Dashboard";
 import Provider from "@components/Provider";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +24,7 @@ export default function RootLayout({ children }) {
               <Dashboard />
             </div>
             {children}
+            <ToastContainer />
           </Suspense>
         </Provider>
       </body>

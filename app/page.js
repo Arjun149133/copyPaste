@@ -1,9 +1,9 @@
 "use client";
 import React, { Suspense, useEffect, useState } from "react";
-import Loading from "./loading";
 import { Button } from "@components/ui/button";
 import Link from "next/link";
-import { Spinner } from "@chakra-ui/react";
+import { MdContentCopy } from "react-icons/md";
+import { ToastContainer, toast } from "react-toastify";
 
 const Home = async () => {
   const [notes, setNotes] = useState([]);
@@ -39,7 +39,13 @@ const Home = async () => {
                   <div className=" mx-5 flex">
                     <h2 className=" font-bold">{note.title}</h2>
                   </div>
-                  <div className=" mx-5 space-x-5">
+                  <div className=" flex justify-center items-center mx-5 space-x-7">
+                    <MdContentCopy
+                      onClick={() => {
+                        navigator.clipboard.writeText(note.content);
+                        toast.success("Copied to clipboard");
+                      }}
+                    />
                     <Button asChild className="h-7 w-24">
                       <Link href={`/note/${note._id}`}>View</Link>
                     </Button>

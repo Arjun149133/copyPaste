@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { Suspense, useEffect, useState } from "react";
 import { Input as Title } from "@components/ui/input";
+import { toast } from "react-toastify";
+import { MdContentCopy } from "react-icons/md";
 
 const Page = ({ params }) => {
   const { data: session } = useSession();
@@ -43,6 +45,7 @@ const Page = ({ params }) => {
       });
 
       if (res.ok) {
+        toast.success("Note updated successfully");
         router.push("/");
       }
     } catch (error) {
@@ -59,6 +62,7 @@ const Page = ({ params }) => {
       });
 
       if (res.ok) {
+        toast.error("Note deleted successfully");
         router.push("/");
       }
     } catch (error) {
@@ -84,7 +88,14 @@ const Page = ({ params }) => {
               </div>
             )}
           </div>
-          <div className=" mx-10 space-x-5 flex">
+          <div className=" mx-10 space-x-5 flex justify-center items-center">
+            <MdContentCopy
+              onClick={() => {
+                navigator.clipboard.writeText(note.content);
+                toast.success("Copied to clipboard");
+              }}
+              className=" text-xl cursor-pointer hover:text-gray-500 transition duration-300 ease-in-out"
+            />
             <Button variant="" asChild>
               <Link
                 href="/"

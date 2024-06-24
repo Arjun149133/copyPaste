@@ -32,7 +32,7 @@ const Dashboard = () => {
   return (
     <section className=" flex justify-evenly w-full my-5">
       <div className="flex w-full pl-7">
-        <h1 className="text-3xl text-transparent from-purple-500 to-purple-800 bg-clip-text bg-gradient-to-b font-bold">
+        <h1 className="text-3xl max-sm:text-sm text-transparent from-purple-500 to-purple-800 bg-clip-text bg-gradient-to-b font-bold">
           Copy & Paste
         </h1>
       </div>
@@ -73,7 +73,7 @@ const Dashboard = () => {
         ) : (
           <>
             {providers &&
-              Object.values(providers).map((provider) => (
+              Object.values(providers)?.map((provider) => (
                 <Button
                   key={provider.name}
                   onClick={() => signIn(provider.id)}

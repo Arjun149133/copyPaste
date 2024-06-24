@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Form = () => {
   const router = useRouter();
@@ -29,6 +30,7 @@ const Form = () => {
       });
 
       if (res.ok) {
+        toast.success("Note created successfully");
         router.push("/");
       }
     } catch (error) {
