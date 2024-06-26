@@ -5,6 +5,8 @@ import Link from "next/link";
 import { MdContentCopy } from "react-icons/md";
 import { ToastContainer, toast } from "react-toastify";
 
+//just a commit
+
 const Home = async () => {
   const [notes, setNotes] = useState([]);
   const [Loading, setLoading] = useState(true);
